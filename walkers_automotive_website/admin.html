@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101719" />
+  <title>Admin Dashboard | Walker's Automotive LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <script defer src="admin.js"></script>
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M25.7 7.7a9.2 9.2 0 0 0-11.6 11.6L6.4 27a4.1 4.1 0 0 0 5.8 5.8l7.7-7.7a9.2 9.2 0 0 0 11.6-11.6l-5.7 5.7-5.5-1.5-1.5-5.5 6.9-4.5Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="10.1" cy="29.1" r="1.4" fill="currentColor"/></svg></span><span class="brand-copy"><strong>WALKER'S</strong><small>AUTOMOTIVE LLC</small></span></a>
+    <div class="admin-header-right"><span class="demo-label"><span></span> LOCAL DEMO</span><a class="back-site" href="index.html">View website <span>↗</span></a></div>
+  </header>
+  <main class="admin-main">
+    <div class="admin-title-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> SHOP OVERVIEW</div><h1>Admin <em>dashboard.</em></h1><p class="admin-subtitle">A simple workspace for service requests and website pricing.</p></div><div class="admin-date" id="todayLabel"></div></div>
+    <div class="demo-warning"><span class="warning-icon">ⓘ</span><div><strong>Prototype mode — browser storage only</strong><p>This dashboard is not protected by a login and is not connected to a server. Requests submitted from the website are saved only in this browser. Do not publish this dashboard with real customer information until secure authentication and a backend are configured.</p></div></div>
+    <section class="admin-stats" aria-label="Request summary">
+      <article class="stat-card"><span class="stat-label">TOTAL REQUESTS</span><strong id="totalRequests">0</strong><span class="stat-note">All requests saved in this browser</span></article>
+      <article class="stat-card"><span class="stat-label">NEW REQUESTS</span><strong id="newRequests">0</strong><span class="stat-note"><i class="status-dot status-dot-new"></i> Awaiting review</span></article>
+      <article class="stat-card"><span class="stat-label">IN PROGRESS</span><strong id="progressRequests">0</strong><span class="stat-note"><i class="status-dot status-dot-progress"></i> Being followed up</span></article>
+      <article class="stat-card"><span class="stat-label">COMPLETED</span><strong id="completedRequests">0</strong><span class="stat-note"><i class="status-dot status-dot-complete"></i> Marked complete</span></article>
+    </section>
+    <section class="admin-section" id="requestsSection">
+      <div class="admin-section-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> CUSTOMER INBOX</div><h2>Service requests <span class="request-count" id="requestCount">0</span></h2></div><div class="inbox-actions"><button type="button" class="admin-button admin-button-secondary" id="exportCsv">Export CSV <span>↗</span></button><button type="button" class="admin-button admin-button-danger" id="clearRequests">Clear demo data</button></div></div>
+      <div class="inbox-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="searchRequests" type="search" placeholder="Search name, vehicle, or service..." aria-label="Search requests"></label><select id="statusFilter" aria-label="Filter by status"><option value="All">All statuses</option><option value="New">New</option><option value="In progress">In progress</option><option value="Completed">Completed</option></select></div>
+      <div class="requests-list" id="requestsList"><div class="empty-state"><span class="empty-icon">↗</span><h3>No requests yet</h3><p>When a visitor submits the website form in this browser, the request will appear here.</p><a href="index.html#contact">Open the contact form <span>↗</span></a></div></div>
+    </section>
+    <section class="admin-section pricing-admin" id="pricingSection">
+      <div class="admin-section-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> WEBSITE SETTINGS</div><h2>Starting prices</h2><p>Changes are stored in this browser and reflected on the public page when viewed from the same site origin.</p></div></div>
+      <form id="pricingForm" class="pricing-settings">
+        <label><span class="setting-name">Vehicle health check</span><span class="setting-description">Displayed as “from” pricing</span><span class="money-input"><span>$</span><input type="number" name="checkup" min="0" step="1" required aria-label="Vehicle health check starting price"></span></label>
+        <label><span class="setting-name">Oil & filter service</span><span class="setting-description">Displayed as “from” pricing</span><span class="money-input"><span>$</span><input type="number" name="oil" min="0" step="1" required aria-label="Oil and filter service starting price"></span></label>
+        <label><span class="setting-name">Brake inspection</span><span class="setting-description">Displayed as “from” pricing</span><span class="money-input"><span>$</span><input type="number" name="brakes" min="0" step="1" required aria-label="Brake inspection starting price"></span></label>
+        <div class="pricing-settings-bottom"><p id="pricingSaveMessage" role="status" aria-live="polite">These are demo values. Confirm your actual rates before publishing.</p><button type="submit" class="admin-button admin-button-primary">Save price changes <span>↗</span></button></div>
+      </form>
+    </section>
+    <footer class="admin-footer"><span>WALKER'S AUTOMOTIVE LLC · ADMIN PROTOTYPE</span><a href="index.html">Return to website ↑</a></footer>
+  </main>
+  <div class="request-modal" id="requestModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="request-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button type="button" class="modal-close" id="modalClose" aria-label="Close request details">×</button><div class="eyebrow"><span class="eyebrow-line"></span> REQUEST DETAILS</div><h2 id="modalTitle">Service request</h2><div id="modalDetails" class="modal-details"></div><div class="modal-status"><label for="modalStatus">Follow-up status</label><select id="modalStatus"><option>New</option><option>In progress</option><option>Completed</option></select><button type="button" id="saveRequestStatus" class="admin-button admin-button-primary">Save status</button></div><div id="modalSaveMessage" class="modal-save-message" role="status" aria-live="polite"></div></section>
+  </div>
+</body>
+</html>
